@@ -1,5 +1,19 @@
+$script_mysql = <<-SCRIPT
+  apt-get update && \
+  apt-get install -y mysql-server-5.7 && \
+  mysql -e "create user 'javauser'@'%' identified by 'pass';"
+  SCRIPT
+
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
   config.vm.network "forwarded_port", guest: 80, host: 8089
-  config.vm.network "private_network", ip: "192.168.50.4"
+  config.vm.network "public_network", ip: "192.168.50.4"
+
+  config.vm.provision "shell",
+    inline: "cat /configs/ssh-key.pub >> .ssh/authorized_keys"
+  config.vm.provision "shell", inline: $script_mysql
+
+  config.vm.synced_folder "C:/desenvolvimento/devops/ambiente-dev/bionic/configs" , "/configs"
+  config.vm.synced_folder ".", "/vagrant", disable: true
+
 end
