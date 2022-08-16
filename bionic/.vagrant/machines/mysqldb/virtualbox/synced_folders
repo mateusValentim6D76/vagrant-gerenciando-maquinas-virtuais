@@ -1,0 +1,1 @@
+{"virtualbox":{"/configs":{"guestpath":"/configs","hostpath":"C:/desenvolvimento/devops/ambiente-dev/bionic/configs","disabled":false,"__vagrantfile":true},"/vagrant":{"disable":true,"guestpath":"/vagrant","hostpath":"C:/desenvolvimento/devops/ambiente-dev/bionic","disabled":false,"__vagrantfile":true}}}
